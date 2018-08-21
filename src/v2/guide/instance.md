@@ -79,6 +79,14 @@ data: {
 
 这里唯一的例外是使用 `Object.freeze()`，这会阻止修改现有的属性，也意味着响应系统无法再*追踪*变化。
 
+```html
+<div id="app">
+  <p>{{ foo }}</p>
+  <!-- 这里的 `foo` 不会更新！ -->
+  <button v-on:click="foo = 'baz'">Change it</button>
+</div>
+```
+
 ```js
 var obj = {
   foo: 'bar'
@@ -90,14 +98,6 @@ new Vue({
   el: '#app',
   data: obj
 })
-```
-
-```html
-<div id="app">
-  <p>{{ foo }}</p>
-  <!-- 这里的 `foo` 不会更新！ -->
-  <button v-on:click="foo = 'baz'">Change it</button>
-</div>
 ```
 
 除了数据属性，Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 `$`，以便与用户定义的属性区分开来。例如：
